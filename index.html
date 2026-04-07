@@ -212,6 +212,60 @@
     }
     .project-link:hover { color: var(--accent); border-color: var(--accent); }
 
+    /* ── Project sub-menu ── */
+    .project-toggle {
+      display: inline-block;
+      margin-top: 0.7rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 0 0 1px 0;
+      transition: border-color 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .project-toggle:hover { color: var(--accent); border-color: var(--accent); }
+    .project-toggle .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+      margin-left: 0.2em;
+    }
+    .project-toggle.open .toggle-arrow { transform: rotate(90deg); }
+
+    .project-submenu {
+      display: none;
+      margin-top: 0.9rem;
+      border-top: 1px solid var(--line);
+      padding-top: 0.75rem;
+    }
+    .project-submenu.open { display: block; }
+
+    .submenu-item { margin-bottom: 0.65rem; }
+    .submenu-item:last-child { margin-bottom: 0; }
+
+    .submenu-item a {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .submenu-item a:hover { color: var(--accent); border-color: var(--accent); }
+
+    .submenu-desc {
+      margin-top: 0.25rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
     /* ── CV / Experience ── */
     .cv-list { display: flex; flex-direction: column; gap: 0; }
 
@@ -358,6 +412,15 @@
               <span class="tag">Python</span>
               <span class="tag">Stata</span>
               <span class="tag">Structural Estimation</span>
+            </div>
+            <button class="project-toggle" onclick="toggleSubmenu(this)" aria-expanded="false">
+              Project materials <span class="toggle-arrow">→</span>
+            </button>
+            <div class="project-submenu">
+              <div class="submenu-item">
+                <a href="https://francesco-moschioni.github.io/nyc-urban-mobility-public/" target="_blank">NYC Urban Mobility Map ↗</a>
+                <div class="submenu-desc">Interactive map of transport demand across New York City — subway, ride-hailing, and bike-share flows visualised by zone.</div>
+              </div>
             </div>
           </div>
           <div class="project-year">2025–26</div>
@@ -514,6 +577,13 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.project-item, .cv-item').forEach(el => observer.observe(el));
+
+    function toggleSubmenu(btn) {
+      const menu = btn.nextElementSibling;
+      const isOpen = menu.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+    }
   </script>
 </body>
 </html>
