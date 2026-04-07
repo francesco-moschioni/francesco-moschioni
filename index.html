@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Francesco Moschioni — Economist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1814;
+      --muted: #8a8680;
+      --accent: #2d5a3d;
+      --line: #ddd9d2;
+      --serif: 'EB Garamond', Georgia, serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { font-size: 18px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--serif);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 0;
+      opacity: 0;
+      animation: fadeDown 0.6s 0.2s ease forwards;
+    }
+    nav .page {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-name {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Sections ── */
+    section {
+      padding: 7rem 0 4rem;
+    }
+    section:first-of-type { padding-top: 9rem; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ── Hero / About ── */
+    .hero-name {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s ease forwards;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+
+    .hero-role {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.55s ease forwards;
+    }
+
+    .hero-bio {
+      font-size: 1.08rem;
+      color: #3a3832;
+      max-width: 560px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.7s ease forwards;
+    }
+
+    .hero-links {
+      margin-top: 2.4rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.85s ease forwards;
+    }
+    .hero-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .hero-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── Projects ── */
+    .projects-list { display: flex; flex-direction: column; gap: 0; }
+
+    .project-item {
+      border-top: 1px solid var(--line);
+      padding: 1.8rem 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-start: start;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      cursor: default;
+    }
+    .project-item.visible { opacity: 1; transform: translateY(0); }
+    .project-item:last-child { border-bottom: 1px solid var(--line); }
+
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .project-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: #e8f0eb;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+    .project-year {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 0.2rem;
+    }
+    .project-link {
+      display: inline-block;
+      margin-top: 0.7rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── CV / Experience ── */
+    .cv-list { display: flex; flex-direction: column; gap: 0; }
+
+    .cv-item {
+      border-top: 1px solid var(--line);
+      padding: 1.6rem 0;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .cv-item.visible { opacity: 1; transform: translateY(0); }
+    .cv-item:last-child { border-bottom: 1px solid var(--line); }
+
+    .cv-period {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      padding-top: 0.25rem;
+    }
+    .cv-role {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .cv-where {
+      font-size: 0.88rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+    .cv-detail {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2.5rem 0;
+      margin-top: 4rem;
+    }
+    footer .page {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 520px) {
+      .cv-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .project-item { grid-template-columns: 1fr; }
+      .project-year { order: -1; }
+      nav .page { flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="page">
+      <a class="nav-name" href="#about">framoschioni.github.io</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#cv">CV</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="page">
+      <div class="section-label">About</div>
+      <h1 class="hero-name">Francesco <em>Moschioni</em></h1>
+      <p class="hero-role">MSc Student in Economics · Bocconi University · Dondena Centre</p>
+      <p class="hero-bio">
+        I study applied microeconomics at Bocconi, with a focus on markets where space matters —
+        particularly transport, urban economics, and industrial organization. My work combines
+        causal inference (DiD, event studies) with structural demand estimation, using large
+        datasets in Python and Stata. I am currently a Research Assistant at the Social Inclusion
+        Lab (Dondena Centre), working on social dispersion and educational inclusion.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:francesco.moschioni@studbocconi.it">Email ↗</a>
+        <a href="https://github.com/framoschioni-code" target="_blank">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/francesco-moschioni" target="_blank">LinkedIn ↗</a>
+        <a href="/cv.pdf" target="_blank">Download CV ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="page">
+      <div class="section-label">Research & Projects</div>
+      <div class="projects-list">
+
+        <div class="project-item">
+          <div>
+            <div class="project-title">Competition &amp; Spatial Dynamics in Transport</div>
+            <div class="project-desc">
+              MSc thesis in empirical industrial organization. Studies how competition and spatial
+              structure shape demand in urban transport, integrating mobility, weather, and
+              demographic data (MTA, TLC, Citi Bike). Builds modular Python pipelines with
+              structural demand estimation moving from logit toward random coefficient models.
+            </div>
+            <div class="project-tags">
+              <span class="tag">Empirical IO</span>
+              <span class="tag">Python</span>
+              <span class="tag">Stata</span>
+              <span class="tag">Structural Estimation</span>
+            </div>
+          </div>
+          <div class="project-year">2025–26</div>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-title">Metro Milan — Origin-Destination Analysis</div>
+            <div class="project-desc">
+              Panel data analysis of Milan's metro network using 1,260 origin-destination pairs.
+              Estimated demand patterns and spatial effects using high-dimensional fixed effects in Stata.
+            </div>
+            <div class="project-tags">
+              <span class="tag">Urban Economics</span>
+              <span class="tag">Stata</span>
+              <span class="tag">Panel Data</span>
+            </div>
+          </div>
+          <div class="project-year">2024</div>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-title">PAYG Pension Systems — BSc Thesis</div>
+            <div class="project-desc">
+              Cross-country empirical analysis of pay-as-you-go pension systems, with attention
+              to data harmonization across national sources.
+            </div>
+            <div class="project-tags">
+              <span class="tag">Public Economics</span>
+              <span class="tag">Stata</span>
+              <span class="tag">Cross-country Analysis</span>
+            </div>
+            <a class="project-link" href="/Moschioni_BSc_Thesis.pdf" target="_blank">Read Thesis ↗</a>
+          </div>
+          <div class="project-year">2024</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section id="cv">
+    <div class="page">
+      <div class="section-label">Experience & Education</div>
+      <div class="cv-list">
+
+        <div class="cv-item">
+          <div class="cv-period">2024 — now</div>
+          <div>
+            <div class="cv-role">MSc in Economics and Social Sciences</div>
+            <div class="cv-where">Bocconi University</div>
+            <div class="cv-detail">
+              GPA 29.4/30. Econometrics: 30L, Labour Economics: 30L, Advanced Statistics: 30.
+              Thesis on competition and spatial dynamics in transport, supervised by Prof. Francesco De Carolis.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-period">Spring 2024</div>
+          <div>
+            <div class="cv-role">Exchange Semester</div>
+            <div class="cv-where">Washington University in St. Louis</div>
+            <div class="cv-detail">
+              GPA 3.85/4. Courses: Game Theory, Global Economy, Money &amp; Banking, Monetary Policy.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-period">2021 — 2024</div>
+          <div>
+            <div class="cv-role">BSc in Economics &amp; Finance</div>
+            <div class="cv-where">Bocconi University</div>
+            <div class="cv-detail">
+              Final grade: 109/110. GPA 28.31/30.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-period">2024 — now</div>
+          <div>
+            <div class="cv-role">Research Assistant</div>
+            <div class="cv-where">Social Inclusion Lab, Dondena Centre, Bocconi University</div>
+            <div class="cv-detail">
+              Supervisor: Prof.ssa Alessandra Casarico. Literature review, field data collection,
+              Python pipelines (APIs, scraping, NLP), and empirical analysis in Stata using
+              high-dimensional fixed effects and causal inference methods.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-period">Feb 2026 —</div>
+          <div>
+            <div class="cv-role">Intern</div>
+            <div class="cv-where">Compass Lexecon</div>
+            <div class="cv-detail">
+              Empirical support for competition cases using large datasets.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-period">ongoing</div>
+          <div>
+            <div class="cv-role">Research Collaborator</div>
+            <div class="cv-where">Tortuga</div>
+            <div class="cv-detail">
+              Policy research and data-driven reports for institutions and firms at the young economists' think tank.
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-period">ongoing</div>
+          <div>
+            <div class="cv-role">Fellow — Microeconomics Group</div>
+            <div class="cv-where">Economic Society for Bocconi Students</div>
+            <div class="cv-detail">
+              Presentation of academic papers and participation in research seminars.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="page">
+      <span class="footer-copy">© 2026 Francesco Moschioni</span>
+      <div class="footer-links">
+        <a href="mailto:francesco.moschioni@studbocconi.it">Email</a>
+        <a href="https://github.com/framoschioni-code" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/francesco-moschioni" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-reveal for project & cv items
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-item, .cv-item').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
