@@ -1,589 +1,473 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Francesco Moschioni — Economist</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Francesco Moschioni — applied microeconomics, urban economics, and structural demand estimation. Research on New York City's congestion pricing.">
+  <meta name="theme-color" content="#6d1f34">
+  <title>Francesco Moschioni — Applied Microeconomist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #f7f5f0;
-      --ink: #1a1814;
-      --muted: #8a8680;
-      --accent: #2d5a3d;
-      --line: #ddd9d2;
-      --serif: 'EB Garamond', Georgia, serif;
-      --mono: 'DM Mono', monospace;
+      --paper: #f4f0e8;
+      --paper-2: #ebe3d6;
+      --ink: #211d1b;
+      --muted: #706962;
+      --wine: #6d1f34;
+      --wine-dark: #48101f;
+      --gold: #aa7d35;
+      --line: rgba(72, 16, 31, 0.18);
+      --serif: "Source Serif 4", Georgia, serif;
+      --mono: "DM Mono", monospace;
+      --max: 1180px;
     }
 
-    html { font-size: 18px; scroll-behavior: smooth; }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      margin: 0;
+      background: var(--paper);
       color: var(--ink);
       font-family: var(--serif);
-      line-height: 1.7;
-      min-height: 100vh;
+      font-size: 18px;
+      line-height: 1.62;
+      text-rendering: optimizeLegibility;
     }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .shell { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 
-    /* ── Layout ── */
-    .page {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── Nav ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--line);
-      padding: 1rem 0;
-      opacity: 0;
-      animation: fadeDown 0.6s 0.2s ease forwards;
-    }
-    nav .page {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-name {
+    .eyebrow, .label, .meta, nav, .button, .metric-label, .tag, .figure-kicker {
       font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* ── Sections ── */
-    section {
-      padding: 7rem 0 4rem;
-    }
-    section:first-of-type { padding-top: 9rem; }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      color: var(--muted);
       text-transform: uppercase;
-      margin-bottom: 2.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line);
+      letter-spacing: .09em;
     }
 
-    /* ── Hero / About ── */
-    .hero-name {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.4s ease forwards;
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 240, 232, .94);
+      backdrop-filter: blur(12px);
+      font-size: .66rem;
     }
-    .hero-name em { font-style: italic; color: var(--accent); }
+    .nav-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 500; text-decoration: none; color: var(--wine); }
+    .nav-links { display: flex; gap: 24px; list-style: none; padding: 0; margin: 0; }
+    .nav-links a { color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--wine); }
 
-    .hero-role {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      margin-bottom: 2.2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.55s ease forwards;
-    }
-
-    .hero-bio {
-      font-size: 1.08rem;
-      color: #3a3832;
-      max-width: 560px;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.7s ease forwards;
-    }
-
-    .hero-links {
-      margin-top: 2.4rem;
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.85s ease forwards;
-    }
-    .hero-links a {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .hero-links a:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* ── Projects ── */
-    .projects-list { display: flex; flex-direction: column; gap: 0; }
-
-    .project-item {
-      border-top: 1px solid var(--line);
-      padding: 1.8rem 0;
+    header {
+      min-height: calc(100vh - 64px);
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1rem;
-      align-start: start;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      cursor: default;
-    }
-    .project-item.visible { opacity: 1; transform: translateY(0); }
-    .project-item:last-child { border-bottom: 1px solid var(--line); }
-
-    .project-title {
-      font-size: 1.05rem;
-      font-weight: 500;
-      margin-bottom: 0.35rem;
-    }
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .project-tags {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-top: 0.8rem;
-    }
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      background: #e8f0eb;
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
-    }
-    .project-year {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      white-space: nowrap;
-      padding-top: 0.2rem;
-    }
-    .project-link {
-      display: inline-block;
-      margin-top: 0.7rem;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.05em;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 1px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .project-link:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* ── Project sub-menu ── */
-    .project-toggle {
-      display: inline-block;
-      margin-top: 0.7rem;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.05em;
-      color: var(--ink);
-      cursor: pointer;
-      background: none;
-      border: none;
-      border-bottom: 1px solid var(--line);
-      padding: 0 0 1px 0;
-      transition: border-color 0.2s, color 0.2s;
-      user-select: none;
-    }
-    .project-toggle:hover { color: var(--accent); border-color: var(--accent); }
-    .project-toggle .toggle-arrow {
-      display: inline-block;
-      transition: transform 0.2s;
-      margin-left: 0.2em;
-    }
-    .project-toggle.open .toggle-arrow { transform: rotate(90deg); }
-
-    .project-submenu {
-      display: none;
-      margin-top: 0.9rem;
-      border-top: 1px solid var(--line);
-      padding-top: 0.75rem;
-    }
-    .project-submenu.open { display: block; }
-
-    .submenu-item { margin-bottom: 0.65rem; }
-    .submenu-item:last-child { margin-bottom: 0; }
-
-    .submenu-item a {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.05em;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 1px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .submenu-item a:hover { color: var(--accent); border-color: var(--accent); }
-
-    .submenu-desc {
-      margin-top: 0.25rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ── CV / Experience ── */
-    .cv-list { display: flex; flex-direction: column; gap: 0; }
-
-    .cv-item {
-      border-top: 1px solid var(--line);
-      padding: 1.6rem 0;
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 1.5rem;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .cv-item.visible { opacity: 1; transform: translateY(0); }
-    .cv-item:last-child { border-bottom: 1px solid var(--line); }
-
-    .cv-period {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      padding-top: 0.25rem;
-    }
-    .cv-role {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-    }
-    .cv-where {
-      font-size: 0.88rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-style: italic;
-    }
-    .cv-detail {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 2.5rem 0;
-      margin-top: 4rem;
-    }
-    footer .page {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
     }
-    .footer-copy {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
+    header::after {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      right: -250px;
+      top: 2%;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      box-shadow: 0 0 0 68px rgba(109,31,52,.025), 0 0 0 136px rgba(109,31,52,.018);
+      pointer-events: none;
     }
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .footer-links a {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, .62fr); gap: 96px; align-items: end; }
+    .eyebrow { font-size: .7rem; color: var(--wine); margin-bottom: 22px; }
+    h1 { margin: 0; max-width: 820px; font-size: clamp(3.1rem, 7vw, 6.7rem); line-height: .96; font-weight: 500; letter-spacing: -.045em; }
+    h1 em { color: var(--wine); font-weight: 400; }
+    .hero-lead { max-width: 760px; margin: 34px 0 0; font-size: clamp(1.1rem, 2vw, 1.38rem); line-height: 1.48; color: #3f3935; }
+    .hero-aside { border-top: 3px solid var(--wine); padding-top: 22px; position: relative; z-index: 1; }
+    .hero-aside p { margin: 0 0 22px; color: var(--muted); font-size: .96rem; }
+    .hero-aside strong { color: var(--ink); font-weight: 600; }
+    .button-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--wine);
+      color: var(--wine);
       text-decoration: none;
-      transition: color 0.2s;
+      font-size: .64rem;
+      transition: .2s ease;
     }
-    .footer-links a:hover { color: var(--accent); }
+    .button.primary { background: var(--wine); color: #fffaf1; }
+    .button:hover { background: var(--wine-dark); border-color: var(--wine-dark); color: white; transform: translateY(-1px); }
 
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+    main section { padding: 104px 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 210px 1fr; gap: 40px; margin-bottom: 58px; }
+    .label { color: var(--wine); font-size: .68rem; padding-top: 12px; }
+    h2 { margin: 0; max-width: 820px; font-size: clamp(2.25rem, 4.4vw, 4.35rem); line-height: 1.03; font-weight: 500; letter-spacing: -.035em; }
+    h3 { margin: 0; font-size: 1.45rem; line-height: 1.2; font-weight: 600; }
+    .section-intro { max-width: 790px; margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; }
+
+    .thesis-card {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      border-top: 4px solid var(--wine);
+      background: #faf7f0;
+      box-shadow: 0 18px 50px rgba(72,16,31,.07);
     }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-8px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .thesis-copy { padding: clamp(32px, 5vw, 68px); }
+    .thesis-title { margin: 0 0 24px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; font-weight: 500; letter-spacing: -.03em; }
+    .thesis-copy p { max-width: 700px; color: #4d4641; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 34px; }
+    .tag { background: var(--paper-2); color: var(--wine); padding: 7px 10px; font-size: .58rem; }
+    .thesis-facts { background: var(--wine); color: #fff8ed; padding: clamp(30px, 4vw, 52px); display: flex; flex-direction: column; justify-content: space-between; }
+    .fact { padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+    .fact:first-child { padding-top: 0; }
+    .fact:last-child { border: 0; padding-bottom: 0; }
+    .fact-number { display: block; font-size: 2.4rem; line-height: 1; }
+    .fact-text { display: block; margin-top: 8px; color: rgba(255,248,237,.72); font-size: .78rem; font-family: var(--mono); }
+
+    .findings-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .finding { min-height: 300px; padding: 34px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; }
+    .metric-label { color: var(--wine); font-size: .6rem; }
+    .metric { margin: auto 0 12px; color: var(--wine); font-size: clamp(3rem, 5vw, 4.6rem); line-height: .92; letter-spacing: -.05em; }
+    .metric small { font-size: .35em; letter-spacing: 0; }
+    .finding p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .caveat { margin-top: 28px; padding: 22px 26px; border-left: 3px solid var(--gold); background: rgba(170,125,53,.08); color: #554c43; }
+
+    .evidence-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 54px; align-items: start; }
+    .figure { border: 1px solid var(--line); background: #faf7f0; padding: 30px; }
+    .figure-kicker { color: var(--wine); font-size: .58rem; margin-bottom: 28px; }
+    .bar-row { display: grid; grid-template-columns: 92px 1fr 46px; gap: 12px; align-items: center; margin: 13px 0; }
+    .bar-label, .bar-value { font-family: var(--mono); font-size: .62rem; }
+    .bar-value { text-align: right; color: var(--wine); }
+    .track { height: 18px; background: var(--paper-2); }
+    .bar { height: 100%; width: var(--w); background: var(--wine); }
+    .figure figcaption { margin-top: 25px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    .evidence-copy h3 { font-size: 2rem; }
+    .evidence-copy p { color: var(--muted); }
+    .quote { margin: 32px 0; padding: 0 0 0 24px; border-left: 3px solid var(--gold); font-size: 1.28rem; line-height: 1.45; }
+
+    .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: method; }
+    .method-card { counter-increment: method; min-height: 240px; padding: 28px; border-top: 2px solid var(--wine); background: #faf7f0; }
+    .method-card::before { content: "0" counter(method); display: block; margin-bottom: 42px; color: var(--gold); font-family: var(--mono); font-size: .65rem; }
+    .method-card h3 { font-size: 1.15rem; }
+    .method-card p { margin-bottom: 0; color: var(--muted); font-size: .87rem; }
+
+    .map-frame { overflow: hidden; border: 1px solid var(--line); background: #fff; }
+    .map-frame iframe { display: block; width: 100%; height: min(72vh, 720px); border: 0; }
+    .map-caption { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; border-top: 1px solid var(--line); background: #faf7f0; color: var(--muted); font-size: .82rem; }
+
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .work-card { padding: 30px; border: 1px solid var(--line); background: rgba(250,247,240,.55); }
+    .work-card .meta { color: var(--gold); font-size: .58rem; margin-bottom: 36px; }
+    .work-card p { color: var(--muted); font-size: .9rem; }
+    .text-link { color: var(--wine); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+    .profile-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; }
+    .profile-copy { font-size: 1.12rem; }
+    .profile-copy p { margin-top: 0; }
+    .timeline { border-top: 1px solid var(--line); }
+    .timeline-item { display: grid; grid-template-columns: 125px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .timeline-item .meta { color: var(--muted); font-size: .58rem; padding-top: 5px; }
+    .timeline-item h3 { font-size: 1.04rem; }
+    .timeline-item p { margin: 5px 0 0; color: var(--muted); font-size: .87rem; }
+
+    .contact { background: var(--wine); color: #fff8ed; }
+    .contact .section-head { margin-bottom: 40px; }
+    .contact .label { color: #d9b371; }
+    .contact h2 { max-width: 900px; }
+    .contact p { max-width: 720px; color: rgba(255,248,237,.72); font-size: 1.1rem; }
+    .contact .button { border-color: rgba(255,255,255,.55); color: white; }
+    .contact .button.primary { background: #fff8ed; color: var(--wine); border-color: #fff8ed; }
+    .contact .button:hover { background: var(--gold); border-color: var(--gold); color: var(--wine-dark); }
+
+    footer { padding: 28px 0; background: var(--wine-dark); color: rgba(255,248,237,.7); font-family: var(--mono); font-size: .6rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { text-decoration: none; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .button { transition: none; }
     }
 
-    /* ── Mobile ── */
-    @media (max-width: 520px) {
-      .cv-item { grid-template-columns: 1fr; gap: 0.4rem; }
-      .project-item { grid-template-columns: 1fr; }
-      .project-year { order: -1; }
-      nav .page { flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+    @media (max-width: 900px) {
+      .hero-grid, .section-head, .thesis-card, .evidence-grid, .profile-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 58px; }
+      .hero-aside { max-width: 560px; }
+      .section-head { gap: 12px; }
+      .findings-grid, .work-grid { grid-template-columns: 1fr 1fr; }
+      .method-grid { grid-template-columns: 1fr 1fr; }
+      .profile-grid { gap: 44px; }
+    }
+
+    @media (max-width: 620px) {
+      body { font-size: 17px; }
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+      .nav-inner { min-height: 58px; }
+      .nav-links li:nth-child(2), .nav-links li:nth-child(3) { display: none; }
+      header { padding-top: 62px; }
+      main section { padding: 76px 0; }
+      .findings-grid, .work-grid, .method-grid { grid-template-columns: 1fr; }
+      .finding { min-height: 250px; }
+      .map-frame iframe { height: 560px; }
+      .map-caption { align-items: flex-start; flex-direction: column; }
+      .timeline-item { grid-template-columns: 1fr; gap: 7px; }
+      .bar-row { grid-template-columns: 76px 1fr 42px; gap: 8px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav>
-    <div class="page">
-      <a class="nav-name" href="#about">framoschioni.github.io</a>
+  <nav aria-label="Primary navigation">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top">Francesco Moschioni</a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#cv">CV</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#findings">Findings</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="page">
-      <div class="section-label">About</div>
-      <h1 class="hero-name">Francesco <em>Moschioni</em></h1>
-      <p class="hero-role">MSc Student in Economics · Bocconi University · Dondena Centre</p>
-      <p class="hero-bio">
-        I study applied microeconomics at Bocconi, with a focus on markets where space matters —
-        particularly transport, urban economics, and industrial organization. My work combines
-        causal inference (DiD, event studies) with structural demand estimation, using large
-        datasets in Python and Stata. I am currently a Research Assistant at the Social Inclusion
-        Lab (Dondena Centre), working on social dispersion and educational inclusion.
-      </p>
-      <div class="hero-links">
-        <a href="mailto:francesco.moschioni@studbocconi.it">Email ↗</a>
-        <a href="https://github.com/framoschioni-code" target="_blank">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/francesco-moschioni" target="_blank">LinkedIn ↗</a>
-        <a href="cv.pdf" target="_blank">Download CV ↗</a>
+  <header id="top">
+    <div class="shell hero-grid">
+      <div>
+        <div class="eyebrow">Applied microeconomics · Urban economics · Empirical IO</div>
+        <h1>Francesco<br><em>Moschioni</em></h1>
+        <p class="hero-lead">I study how prices, geography, and access to alternatives shape choices in urban markets. My work combines structural demand estimation with large administrative datasets and spatial analysis.</p>
       </div>
+      <aside class="hero-aside" aria-label="Current position and links">
+        <p><strong>MSc in Economics and Social Sciences</strong><br>Bocconi University</p>
+        <p><strong>Research Assistant</strong><br>Social Inclusion Lab, Dondena Centre</p>
+        <div class="button-row">
+          <a class="button primary" href="#research">View research</a>
+          <a class="button" href="cv.pdf" target="_blank" rel="noopener">CV</a>
+        </div>
+      </aside>
     </div>
-  </section>
+  </header>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="page">
-      <div class="section-label">Research & Projects</div>
-      <div class="projects-list">
-
-        <div class="project-item">
+  <main>
+    <section id="research">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Featured research</div>
           <div>
-            <div class="project-title">Competition &amp; Spatial Dynamics in Transport</div>
-            <div class="project-desc">
-              MSc thesis in empirical industrial organization. Studies how competition and spatial
-              structure shape demand in urban transport, integrating mobility, weather, and
-              demographic data (MTA, TLC, Citi Bike). Builds modular Python pipelines with
-              structural demand estimation moving from logit toward random coefficient models.
-            </div>
-            <div class="project-tags">
-              <span class="tag">Empirical IO</span>
+            <h2>A structural account of who can adjust to congestion pricing.</h2>
+            <p class="section-intro">My MSc thesis studies heterogeneous substitution and the demand-side incidence of New York City's 2025 Congestion Relief Zone.</p>
+          </div>
+        </div>
+
+        <article class="thesis-card reveal">
+          <div class="thesis-copy">
+            <div class="eyebrow">MSc thesis · 2025–2026</div>
+            <h3 class="thesis-title">Bridge and Tunnel: The Geography of Substitution under New York's Congestion Pricing</h3>
+            <p>I develop a multimodal random-coefficients nested-logit demand model to estimate how travelers substitute across modes and locations. The model combines trip records, network and survey data, travel costs and times, and origin-zone income distributions. Because the sample is almost entirely post-policy, the no-toll regime is evaluated as a structural counterfactual.</p>
+            <div class="tags" aria-label="Research tags">
+              <span class="tag">Congestion pricing</span>
+              <span class="tag">BLP demand</span>
+              <span class="tag">Nested logit</span>
+              <span class="tag">Spatial analysis</span>
               <span class="tag">Python</span>
-              <span class="tag">Stata</span>
-              <span class="tag">Structural Estimation</span>
             </div>
-            <button class="project-toggle" onclick="toggleSubmenu(this)" aria-expanded="false">
-              Project materials <span class="toggle-arrow">→</span>
-            </button>
-            <div class="project-submenu">
-              <div class="submenu-item">
-                <a href="MSc Thesis output/01_zone_heatmap.html" target="_blank">Zone Heatmap ↗</a>
-                <div class="submenu-desc">Heatmap of NYC transport zones — visualises demand density across the city grid.</div>
-              </div>
+            <div class="button-row">
+              <a class="button primary" href="https://francesco-moschioni.github.io/nyc-urban-mobility-public/" target="_blank" rel="noopener">Research page</a>
+              <a class="button" href="#map">Explore the map</a>
             </div>
           </div>
-          <div class="project-year">2025–26</div>
-        </div>
-
-        <div class="project-item">
-          <div>
-            <div class="project-title">Metro Milan — Origin-Destination Analysis</div>
-            <div class="project-desc">
-              Panel data analysis of Milan's metro network using 1,260 origin-destination pairs.
-              Estimated demand patterns and spatial effects using high-dimensional fixed effects in Stata.
-            </div>
-            <div class="project-tags">
-              <span class="tag">Urban Economics</span>
-              <span class="tag">Stata</span>
-              <span class="tag">Panel Data</span>
-            </div>
-          </div>
-          <div class="project-year">2024</div>
-        </div>
-
-        <div class="project-item">
-          <div>
-            <div class="project-title">PAYG Pension Systems — BSc Thesis</div>
-            <div class="project-desc">
-              Cross-country empirical analysis of pay-as-you-go pension systems, with attention
-              to data harmonization across national sources.
-            </div>
-            <div class="project-tags">
-              <span class="tag">Public Economics</span>
-              <span class="tag">Stata</span>
-              <span class="tag">Cross-country Analysis</span>
-            </div>
-            <a class="project-link" href="Moschioni_BSc_Thesis.pdf" target="_blank">Read Thesis ↗</a>
-          </div>
-          <div class="project-year">2024</div>
-        </div>
-
+          <aside class="thesis-facts" aria-label="Study design summary">
+            <div class="fact"><span class="fact-number">8</span><span class="fact-text">transport modes</span></div>
+            <div class="fact"><span class="fact-number">263</span><span class="fact-text">NYC taxi zones</span></div>
+            <div class="fact"><span class="fact-number">5</span><span class="fact-text">time-of-day segments</span></div>
+            <div class="fact"><span class="fact-number">2025</span><span class="fact-text">policy and estimation setting</span></div>
+          </aside>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CV -->
-  <section id="cv">
-    <div class="page">
-      <div class="section-label">Experience & Education</div>
-      <div class="cv-list">
-
-        <div class="cv-item">
-          <div class="cv-period">2024 — now</div>
+    <section id="findings">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Selected findings</div>
           <div>
-            <div class="cv-role">MSc in Economics and Social Sciences</div>
-            <div class="cv-where">Bocconi University</div>
-            <div class="cv-detail">
-              GPA 29.4/30. Econometrics: 30L, Labour Economics: 30L, Advanced Statistics: 30.
-              Thesis on competition and spatial dynamics in transport, supervised by Prof. Francesco De Carolis.
-            </div>
+            <h2>Income alone does not order the incidence.</h2>
+            <p class="section-intro">The estimates point to a stronger spatial pattern: access to transport alternatives is central to travelers' capacity to respond to the charge.</p>
           </div>
         </div>
 
-        <div class="cv-item">
-          <div class="cv-period">Spring 2024</div>
-          <div>
-            <div class="cv-role">Exchange Semester</div>
-            <div class="cv-where">Washington University in St. Louis</div>
-            <div class="cv-detail">
-              GPA 3.85/4. Courses: Game Theory, Global Economy, Money &amp; Banking, Monetary Policy.
-            </div>
-          </div>
+        <div class="findings-grid reveal">
+          <article class="finding">
+            <span class="metric-label">No-toll counterfactual</span>
+            <div class="metric">+1.0<small>%</small></div>
+            <p>Change in car mode share under partial equilibrium; +0.9% with congestion feedback.</p>
+          </article>
+          <article class="finding">
+            <span class="metric-label">Lowest-income agent</span>
+            <div class="metric">22.2–23.1<small>%</small></div>
+            <p>Share of the aggregate consumer-surplus gain from removing the toll across the two counterfactual treatments.</p>
+          </article>
+          <article class="finding">
+            <span class="metric-label">Spatial incidence</span>
+            <div class="metric">6.3<small>%</small></div>
+            <p>Manhattan's share of the partial-equilibrium gain, versus 35.4% in Queens and 35.2% in Brooklyn.</p>
+          </article>
         </div>
-
-        <div class="cv-item">
-          <div class="cv-period">2021 — 2024</div>
-          <div>
-            <div class="cv-role">BSc in Economics &amp; Finance</div>
-            <div class="cv-where">Bocconi University</div>
-            <div class="cv-detail">
-              Final grade: 109/110. GPA 28.31/30.
-            </div>
-          </div>
-        </div>
-
-        <div class="cv-item">
-          <div class="cv-period">2024 — now</div>
-          <div>
-            <div class="cv-role">Research Assistant</div>
-            <div class="cv-where">Social Inclusion Lab, Dondena Centre, Bocconi University</div>
-            <div class="cv-detail">
-              Supervisor: Prof.ssa Alessandra Casarico. Literature review, field data collection,
-              Python pipelines (APIs, scraping, NLP), and empirical analysis in Stata using
-              high-dimensional fixed effects and causal inference methods.
-            </div>
-          </div>
-        </div>
-
-        <div class="cv-item">
-          <div class="cv-period">Feb 2026 —</div>
-          <div>
-            <div class="cv-role">Intern</div>
-            <div class="cv-where">Compass Lexecon</div>
-            <div class="cv-detail">
-              Empirical support for competition cases using large datasets.
-            </div>
-          </div>
-        </div>
-
-        <div class="cv-item">
-          <div class="cv-period">ongoing</div>
-          <div>
-            <div class="cv-role">Research Collaborator</div>
-            <div class="cv-where">Tortuga</div>
-            <div class="cv-detail">
-              Policy research and data-driven reports for institutions and firms at the young economists' think tank.
-            </div>
-          </div>
-        </div>
-
-        <div class="cv-item">
-          <div class="cv-period">ongoing</div>
-          <div>
-            <div class="cv-role">Fellow — Microeconomics Group</div>
-            <div class="cv-where">Economic Society for Bocconi Students</div>
-            <div class="cv-detail">
-              Presentation of academic papers and participation in research seminars.
-            </div>
-          </div>
-        </div>
-
+        <p class="caveat reveal"><strong>Scope.</strong> These results characterize demand-side incidence, not the complete welfare incidence of congestion pricing. Revenue recycling and a full transport equilibrium remain outside the counterfactual.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
+    <section aria-labelledby="spatial-title">
+      <div class="shell evidence-grid">
+        <figure class="figure reveal">
+          <div class="figure-kicker">Figure 1 · Share of PE consumer-surplus gain</div>
+          <div class="bar-row"><span class="bar-label">Queens</span><div class="track"><div class="bar" style="--w:100%"></div></div><span class="bar-value">35.4</span></div>
+          <div class="bar-row"><span class="bar-label">Brooklyn</span><div class="track"><div class="bar" style="--w:99.4%"></div></div><span class="bar-value">35.2</span></div>
+          <div class="bar-row"><span class="bar-label">Staten Is.</span><div class="track"><div class="bar" style="--w:41.5%"></div></div><span class="bar-value">14.7</span></div>
+          <div class="bar-row"><span class="bar-label">Bronx</span><div class="track"><div class="bar" style="--w:23.4%"></div></div><span class="bar-value">8.3</span></div>
+          <div class="bar-row"><span class="bar-label">Manhattan</span><div class="track"><div class="bar" style="--w:17.8%"></div></div><span class="bar-value">6.3</span></div>
+          <figcaption>Distribution by borough of trip origin. Percent of the aggregate gain from removing congestion pricing in the partial-equilibrium counterfactual.</figcaption>
+        </figure>
+        <div class="evidence-copy reveal">
+          <div class="label">Interpretation</div>
+          <h3 id="spatial-title">Transport geography is an economic margin.</h3>
+          <blockquote class="quote">The capacity to substitute depends importantly on where travelers are located and which alternatives are available to them.</blockquote>
+          <p>Car own-price elasticity does not move monotonically with income. Spatial heterogeneity is more pronounced and closely associated with subway accessibility, including outside Manhattan. The borough pattern is consistent with that mechanism: Manhattan, with dense subway coverage, receives the smallest share of the gain from removing the charge.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Research design</div>
+          <div>
+            <h2>From fragmented mobility records to a multimodal demand system.</h2>
+            <p class="section-intro">The structural model is portable; the measurement and identification layers depend on the local data environment.</p>
+          </div>
+        </div>
+        <div class="method-grid reveal">
+          <article class="method-card"><h3>Measure the market</h3><p>Construct quantities, generalized prices, travel times, availability, market size, and demographics for eight modes.</p></article>
+          <article class="method-card"><h3>Reconstruct missing flows</h3><p>Estimate private-car and bus origin–destination flows with gravity models where direct spatial records are unavailable.</p></article>
+          <article class="method-card"><h3>Estimate heterogeneity</h3><p>Use a random-coefficients nested-logit model with price sensitivity varying across origin-zone income distributions.</p></article>
+          <article class="method-card"><h3>Evaluate the counterfactual</h3><p>Remove mode-specific congestion charges and resolve demand under partial equilibrium and congestion feedback.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="map">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Data exploration</div>
+          <div>
+            <h2>Explore the geography behind the model.</h2>
+            <p class="section-intro">The interactive zone map links the empirical objects in the thesis to New York's spatial structure.</p>
+          </div>
+        </div>
+        <div class="map-frame reveal">
+          <iframe src="MSc Thesis output/01_zone_heatmap.html" loading="lazy" title="Interactive heatmap of New York City transport zones"></iframe>
+          <div class="map-caption">
+            <span>Interactive NYC zone heatmap · thesis data exploration</span>
+            <a class="text-link" href="MSc Thesis output/01_zone_heatmap.html" target="_blank" rel="noopener">Open full screen ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="other-work">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Selected work</div>
+          <div><h2>Research across urban, public, and applied microeconomics.</h2></div>
+        </div>
+        <div class="work-grid reveal">
+          <article class="work-card">
+            <div class="meta">Research assistance · ongoing</div>
+            <h3>Social dispersion and educational inclusion</h3>
+            <p>Research support at the Social Inclusion Lab, Dondena Centre: literature review, field data collection, Python pipelines, NLP, and empirical work in Stata.</p>
+          </article>
+          <article class="work-card">
+            <div class="meta">Urban economics · 2024</div>
+            <h3>Metro Milan origin–destination analysis</h3>
+            <p>Panel analysis of 1,260 origin–destination pairs, estimating demand patterns and spatial effects with high-dimensional fixed effects.</p>
+          </article>
+          <article class="work-card">
+            <div class="meta">BSc thesis · 2024</div>
+            <h3>Pay-as-you-go pension systems</h3>
+            <p>Cross-country empirical analysis of public pension systems, with particular attention to harmonizing data across national sources.</p>
+            <a class="text-link" href="Moschioni_BSc_Thesis.pdf" target="_blank" rel="noopener">Read thesis ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Profile</div>
+          <div><h2>Economics, data, and institutional questions.</h2></div>
+        </div>
+        <div class="profile-grid">
+          <div class="profile-copy reveal">
+            <p>I am an MSc student in Economics and Social Sciences at Bocconi University. My interests lie in empirical industrial organization, urban economics, transport, and applied microeconomics.</p>
+            <p>I work with large administrative and spatial datasets, combining structural methods with causal inference and reproducible data engineering.</p>
+            <a class="button primary" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
+          </div>
+          <div class="timeline reveal">
+            <article class="timeline-item"><div class="meta">2024–now</div><div><h3>MSc in Economics and Social Sciences</h3><p>Bocconi University · GPA 29.4/30 · Thesis supervised by Prof. Francesco Decarolis</p></div></article>
+            <article class="timeline-item"><div class="meta">2024–now</div><div><h3>Research Assistant</h3><p>Social Inclusion Lab, Dondena Centre, Bocconi University</p></div></article>
+            <article class="timeline-item"><div class="meta">Feb 2026–</div><div><h3>Intern</h3><p>Compass Lexecon · empirical support for competition cases using large datasets</p></div></article>
+            <article class="timeline-item"><div class="meta">Spring 2024</div><div><h3>Exchange semester</h3><p>Washington University in St. Louis · GPA 3.85/4</p></div></article>
+            <article class="timeline-item"><div class="meta">2021–2024</div><div><h3>BSc in Economics and Finance</h3><p>Bocconi University · 109/110</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Contact</div>
+          <div>
+            <h2>Interested in research, pre-doc, and academic opportunities.</h2>
+            <p>I welcome conversations about applied microeconomics, structural demand estimation, urban mobility, and research collaborations.</p>
+          </div>
+        </div>
+        <div class="button-row reveal">
+          <a class="button primary" href="mailto:francesco.moschioni@studbocconi.it">Email me</a>
+          <a class="button" href="https://github.com/francesco-moschioni" target="_blank" rel="noopener">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/francesco-moschioni" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <div class="page">
-      <span class="footer-copy">© 2026 Francesco Moschioni</span>
-      <div class="footer-links">
-        <a href="mailto:francesco.moschioni@studbocconi.it">Email</a>
-        <a href="https://github.com/framoschioni-code" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/francesco-moschioni" target="_blank">LinkedIn</a>
-      </div>
+    <div class="shell footer-inner">
+      <span>© 2026 Francesco Moschioni</span>
+      <div class="footer-links"><a href="#top">Back to top ↑</a><a href="cv.pdf" target="_blank" rel="noopener">CV</a></div>
     </div>
   </footer>
 
   <script>
-    // Scroll-reveal for project & cv items
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
+          entry.target.classList.add('visible');
+          reveal.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.project-item, .cv-item').forEach(el => observer.observe(el));
-
-    function toggleSubmenu(btn) {
-      const menu = btn.nextElementSibling;
-      const isOpen = menu.classList.toggle('open');
-      btn.classList.toggle('open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen);
-    }
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach((element) => reveal.observe(element));
   </script>
 </body>
 </html>
