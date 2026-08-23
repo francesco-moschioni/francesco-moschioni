@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Francesco Moschioni — applied microeconomics, urban economics, and structural demand estimation. Research on New York City's congestion pricing.">
+  <meta name="description" content="Francesco Moschioni — economics researcher working across macroeconomics, industrial organization, and urban economics. Incoming Pre-Doctoral Research Assistant at Universitat Pompeu Fabra.">
   <meta name="theme-color" content="#6d1f34">
-  <title>Francesco Moschioni — Applied Microeconomist</title>
+  <title>Francesco Moschioni — Economics Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -166,6 +166,7 @@
     .exhibit-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
     .exhibit-card { min-height: 310px; padding: 34px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(250,247,240,.6); display: flex; flex-direction: column; }
     .exhibit-card .meta { color: var(--gold); font-size: .58rem; }
+    .exhibit-card.model-evidence { border-top: 3px solid var(--wine); background: #faf7f0; }
     .exhibit-card h3 { margin: auto 0 12px; font-size: 1.75rem; }
     .exhibit-card p { margin: 0; color: var(--muted); font-size: .92rem; }
     .exhibit-card a { margin-top: 20px; }
@@ -240,7 +241,7 @@
       <ul class="nav-links">
         <li><a href="#research">Research</a></li>
         <li><a href="#findings">Findings</a></li>
-        <li><a href="#methods">Methods</a></li>
+        <li><a href="#interactive-exhibits">Evidence</a></li>
         <li><a href="#profile">Profile</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -250,16 +251,16 @@
   <header id="top">
     <div class="shell hero-grid">
       <div>
-        <div class="eyebrow">Applied microeconomics · Urban economics · Empirical IO</div>
+        <div class="eyebrow">Macroeconomics · Industrial organization · Urban economics</div>
         <h1>Francesco<br><em>Moschioni</em></h1>
-        <p class="hero-lead">I study how prices, geography, and access to alternatives shape choices in urban markets. My work combines structural demand estimation with large administrative datasets and spatial analysis.</p>
+        <p class="hero-lead">My research interests lie at the intersection of macroeconomics, industrial organization, and urban economics. My current work studies how prices, geography, and access to alternatives shape choices in urban markets.</p>
       </div>
       <aside class="hero-aside" aria-label="Current position and links">
-        <p><strong>MSc in Economics and Social Sciences</strong><br>Bocconi University</p>
-        <p><strong>Research Assistant</strong><br>Social Inclusion Lab, Dondena Centre</p>
+        <p><strong>Incoming Pre-Doctoral Research Assistant</strong><br>Universitat Pompeu Fabra · ERC project on labour economics and market power · from September 2026</p>
+        <p><strong>MSc in Economics and Social Sciences</strong><br>Bocconi University · expected September 2026</p>
         <div class="button-row">
           <a class="button primary" href="#research">View research</a>
-          <a class="button" href="cv.pdf" target="_blank" rel="noopener">CV</a>
+          <a class="button" href="https://raw.githubusercontent.com/francesco-moschioni/predoc-applications/main/CV%20Sito/Moschioni_CV_Website.pdf" target="_blank" rel="noopener">CV</a>
         </div>
       </aside>
     </div>
@@ -290,7 +291,7 @@
             </div>
             <div class="button-row">
               <a class="button primary" href="https://francesco-moschioni.github.io/nyc-urban-mobility-public/" target="_blank" rel="noopener">Research page</a>
-              <a class="button" href="#map">Explore the map</a>
+              <a class="button" href="#interactive-exhibits">Explore the evidence</a>
             </div>
           </div>
           <aside class="thesis-facts" aria-label="Study design summary">
@@ -354,6 +355,19 @@
       </div>
     </section>
 
+    <section id="interactive-exhibits" hidden>
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="label">Interactive evidence</div>
+          <div>
+            <h2>From travel flows to policy incidence.</h2>
+            <p class="section-intro">Four interactive views connect New York's transport system to the model's estimated substitution patterns and congestion-pricing counterfactuals. Follow the argument from observed mobility and available alternatives to spatial adjustment and policy incidence.</p>
+          </div>
+        </div>
+        <div id="exhibit-grid" class="exhibit-grid reveal"></div>
+      </div>
+    </section>
+
     <section id="methods">
       <div class="shell">
         <div class="section-head reveal">
@@ -372,48 +386,15 @@
       </div>
     </section>
 
-    <section id="map">
-      <div class="shell">
-        <div class="section-head reveal">
-          <div class="label">Data exploration</div>
-          <div>
-            <h2>Explore the geography behind the model.</h2>
-            <p class="section-intro">The interactive zone map links the empirical objects in the thesis to New York's spatial structure.</p>
-          </div>
-        </div>
-        <div class="map-frame reveal">
-          <iframe src="MSc Thesis output/01_zone_heatmap.html" loading="lazy" title="Interactive heatmap of New York City transport zones"></iframe>
-          <div class="map-caption">
-            <span>Interactive NYC zone heatmap · thesis data exploration</span>
-            <a class="text-link" href="MSc Thesis output/01_zone_heatmap.html" target="_blank" rel="noopener">Open full screen ↗</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="interactive-exhibits" hidden>
-      <div class="shell">
-        <div class="section-head reveal">
-          <div class="label">Research exhibits</div>
-          <div>
-            <h2>Interrogate the mobility system.</h2>
-            <p class="section-intro">Standalone interactive exhibits generated from the thesis's local model outputs.</p>
-          </div>
-        </div>
-        <div id="exhibit-grid" class="exhibit-grid reveal"></div>
-      </div>
-    </section>
-
     <section id="other-work">
       <div class="shell">
         <div class="section-head reveal">
           <div class="label">Selected work</div>
-          <div><h2>Research across urban, public, and applied microeconomics.</h2></div>
+          <div><h2>Research across markets, cities, and public policy.</h2></div>
         </div>
         <div class="work-grid reveal">
           <article class="work-card">
-            <div class="meta">Research assistance · ongoing</div>
+            <div class="meta">Research assistance · 2025–2026</div>
             <h3>Social dispersion and educational inclusion</h3>
             <p>Research support at the Social Inclusion Lab, Dondena Centre: literature review, field data collection, Python pipelines, NLP, and empirical work in Stata.</p>
           </article>
@@ -440,14 +421,15 @@
         </div>
         <div class="profile-grid">
           <div class="profile-copy reveal">
-            <p>I am an MSc student in Economics and Social Sciences at Bocconi University. My interests lie in empirical industrial organization, urban economics, transport, and applied microeconomics.</p>
-            <p>I work with large administrative and spatial datasets, combining structural methods with causal inference and reproducible data engineering.</p>
-            <a class="button primary" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
+            <p>I am an incoming Pre-Doctoral Research Assistant at Universitat Pompeu Fabra, where I will join an ERC-funded project on labour economics and market power in September 2026. I am currently completing an MSc in Economics and Social Sciences at Bocconi University.</p>
+            <p>My research interests span macroeconomics, industrial organization, and urban economics. I work with structural and applied econometric methods, large administrative datasets, and reproducible computational workflows.</p>
+            <a class="button primary" href="https://raw.githubusercontent.com/francesco-moschioni/predoc-applications/main/CV%20Sito/Moschioni_CV_Website.pdf" target="_blank" rel="noopener">Download CV</a>
           </div>
           <div class="timeline reveal">
-            <article class="timeline-item"><div class="meta">2024–now</div><div><h3>MSc in Economics and Social Sciences</h3><p>Bocconi University · GPA 29.4/30 · Thesis supervised by Prof. Francesco Decarolis</p></div></article>
-            <article class="timeline-item"><div class="meta">2024–now</div><div><h3>Research Assistant</h3><p>Social Inclusion Lab, Dondena Centre, Bocconi University</p></div></article>
-            <article class="timeline-item"><div class="meta">Feb 2026–</div><div><h3>Intern</h3><p>Compass Lexecon · empirical support for competition cases using large datasets</p></div></article>
+            <article class="timeline-item"><div class="meta">From Sep 2026</div><div><h3>Pre-Doctoral Research Assistant</h3><p>Universitat Pompeu Fabra · ERC project on labour economics and market power</p></div></article>
+            <article class="timeline-item"><div class="meta">2024–2026</div><div><h3>MSc in Economics and Social Sciences</h3><p>Bocconi University · GPA 29.4/30 · Thesis supervised by Prof. Francesco Decarolis</p></div></article>
+            <article class="timeline-item"><div class="meta">Nov 2025–Feb 2026</div><div><h3>Research Assistant</h3><p>Social Inclusion Lab, Dondena Centre, Bocconi University</p></div></article>
+            <article class="timeline-item"><div class="meta">Feb–May 2026</div><div><h3>Intern</h3><p>Compass Lexecon · empirical support for competition cases using large datasets</p></div></article>
             <article class="timeline-item"><div class="meta">Spring 2024</div><div><h3>Exchange semester</h3><p>Washington University in St. Louis · GPA 3.85/4</p></div></article>
             <article class="timeline-item"><div class="meta">2021–2024</div><div><h3>BSc in Economics and Finance</h3><p>Bocconi University · 109/110</p></div></article>
           </div>
@@ -460,8 +442,8 @@
         <div class="section-head reveal">
           <div class="label">Contact</div>
           <div>
-            <h2>Interested in research, pre-doc, and academic opportunities.</h2>
-            <p>I welcome conversations about applied microeconomics, structural demand estimation, urban mobility, and research collaborations.</p>
+            <h2>Research, code, and collaboration.</h2>
+            <p>I welcome conversations about macroeconomics, market power, structural demand estimation, urban mobility, and research collaborations.</p>
           </div>
         </div>
         <div class="button-row reveal">
@@ -476,7 +458,7 @@
   <footer>
     <div class="shell footer-inner">
       <span>© 2026 Francesco Moschioni</span>
-      <div class="footer-links"><a href="#top">Back to top ↑</a><a href="cv.pdf" target="_blank" rel="noopener">CV</a></div>
+      <div class="footer-links"><a href="#top">Back to top ↑</a><a href="https://raw.githubusercontent.com/francesco-moschioni/predoc-applications/main/CV%20Sito/Moschioni_CV_Website.pdf" target="_blank" rel="noopener">CV</a></div>
     </div>
   </footer>
 
@@ -497,7 +479,10 @@
         if (!ready.length) return;
         const section = document.querySelector('#interactive-exhibits');
         const grid = document.querySelector('#exhibit-grid');
-        grid.innerHTML = ready.map((item, index) => '<article class="exhibit-card"><div class="meta">Exhibit 0' + (index + 1) + '</div><h3>' + item.title + '</h3><p>' + item.description + '</p><a class="text-link" href="/nyc-urban-mobility-public/' + item.href + '">Open interactive →</a></article>').join('');
+        grid.innerHTML = ready.map((item, index) => {
+          const emphasis = ['adjustment', 'policy'].includes(item.id) ? ' model-evidence' : '';
+          return '<article class="exhibit-card' + emphasis + '"><div class="meta">' + (item.category || ('Exhibit 0' + (index + 1))) + '</div><h3>' + item.title + '</h3><p>' + item.description + '</p><a class="text-link" href="/nyc-urban-mobility-public/' + item.href + '">' + (item.cta || 'Open interactive') + ' →</a></article>';
+        }).join('');
         section.hidden = false;
         section.querySelectorAll('.reveal').forEach((element) => reveal.observe(element));
       })

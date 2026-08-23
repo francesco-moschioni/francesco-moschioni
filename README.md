@@ -1,84 +1,49 @@
-# Francesco — Economics × Data × Code
+# Francesco Moschioni — Economics × Data × Code
 
-> *Master's student in Economics @ Bocconi University.*
-> *I build structural econometric models and the data pipelines that feed them.*
+> *Incoming Pre-Doctoral Research Assistant at Universitat Pompeu Fabra.*  
+> *Research interests: macroeconomics, industrial organization, and urban economics.*
 
----
+From September 2026, I will join an ERC-funded project on labour economics and market power at Universitat Pompeu Fabra. I am completing an MSc in Economics and Social Sciences at Bocconi University.
 
-## 🎓 Thesis — NYC Urban Mobility Demand Estimation
+## MSc Thesis — NYC Urban Mobility and Congestion Pricing
 
-My master's thesis applies a **Mixed Logit / BLP structural demand model** to the New York City urban mobility market, estimating modal substitution patterns across Yellow Taxi, Green Taxi, HVFHV (Uber/Lyft/Via), Subway, Bus, and Citi Bike.
+My thesis, **Bridge and Tunnel: The Geography of Substitution under New York's Congestion Pricing**, develops a multimodal random-coefficients nested-logit demand model for New York City's transport market.
 
-**Research question**: How do surge pricing algorithms and transit disruptions reshape consumer substitution across modes in real time?
+The model combines trip records, transport networks, travel costs and times, survey evidence, and origin-zone income distributions across:
 
-### Methodology
+- **8 transport modes**;
+- **263 NYC taxi zones**;
+- **5 time-of-day segments**;
+- the **2025 Congestion Relief Zone** policy setting.
 
-The estimation framework is progressive and defensible at each step:
+The analysis estimates heterogeneous substitution across modes and locations and evaluates the no-toll regime as a structural counterfactual. The results indicate that income alone does not order demand-side incidence: spatial differences in access to transport alternatives are central to travelers' capacity to adjust.
 
-```
-Descriptive Analysis → Simple Logit → Nested Logit → BLP Mixed Logit
-```
+### Selected results
 
-- **Market definition**: `(Origin TLC zone × Destination TLC zone × Hour × Date)` — ~263 zones, 2021–2025
-- **Berry inversion**: linearises market shares into mean utilities → enables IV/GMM identification
-- **Endogeneity**: HVFHV surge pricing instrumented via Hausman-type IVs + BLP differentiation instruments + GTFS scheduled frequency
-- **Random coefficients**: heterogeneous price and travel-time sensitivities drawn from Census income distributions (ACS 2022 at tract level)
-- **Post-estimation extension**: NLP-based Service Disruption Index from MTA service alerts
+- Removing congestion pricing increases the estimated car mode share by approximately **1.0%** under partial equilibrium and **0.9%** with congestion feedback.
+- Car own-price elasticity does not vary monotonically with income; spatial heterogeneity is more pronounced and associated with transport accessibility.
+- Manhattan receives **6.3%** of the partial-equilibrium consumer-surplus gain from toll removal, compared with **35.4%** in Queens and **35.2%** in Brooklyn.
 
-**Reference**: Guerrero, Guevara, Cherchi & Ortúzar (2021), *Transportation Research Part B* — structural modal demand in Valparaíso.
+These estimates characterize **demand-side incidence**, not complete welfare incidence. Revenue recycling and a complete transport equilibrium remain outside the counterfactual.
 
----
+### Interactive evidence
 
-### Data Pipeline
+The public research dossier connects the empirical setting to the model results through four interactive exhibits:
 
-The project processes ~20 GB of raw data across six heterogeneous public sources, producing a unified market-level panel for estimation.
+1. **How New York Moves** — multimodal origin-destination flows;
+2. **Anatomy of a Corridor** — the prices and time components of the available alternatives;
+3. **The Geography of Adjustment** — spatial elasticities and modal diversion;
+4. **Congestion Pricing Counterfactuals** — no-toll results and the fixed-ratio toll frontier.
 
-| Source | Volume | Pipeline stage |
-|---|---|---|
-| NYC TLC Trip Records (Yellow/Green/HVFHV/FHV) | ~1.1B trips | Clean → zone-hour aggregation |
-| MTA Subway Hourly Entries | 43.7M rows | Clean → station-level panel |
-| MTA Subway Origin-Destination Estimates | 126.3M rows | Weight matrix for flow estimation |
-| MTA Subway Estimated Flows (derived) | 1.36B rows | Station → TLC zone spatial join |
-| Citi Bike Trip Data | 221.7M rows | Clean → TLC zone spatial join |
-| NOAA ISD Global Hourly Weather | 18 files × 3 stations | Download → cleaning pending |
-| U.S. Census ACS 2022 (5-year) + TIGER/Line | 2,327 tracts | Crosswalk → TLC zone demographics |
+[Explore the interactive research dossier →](https://francesco-moschioni.github.io/nyc-urban-mobility-public/)
 
-**Key engineering challenges solved**:
-- Row-group-by-row-group PyArrow I/O throughout — never loading full files into RAM
-- DuckDB temp directory routed to D: to avoid C: exhaustion on large aggregations
-- Explicit `pa.schema` on all Parquet writers — prevents type inference failures on sparse early row groups
-- Resume-safe shard patterns on all CSV → Parquet pipelines
-- PyArrow filter-before-pandas pattern on HVFHV files (~18–21M rows/month) to prevent OOM
+## Methods and tools
 
----
+**Econometrics:** structural demand estimation, discrete choice, panel data, high-dimensional fixed effects, causal inference  
+**Programming:** Python, PyArrow, DuckDB, GeoPandas, pandas, Stata, LaTeX  
+**Data:** large administrative, spatial, network, and survey datasets
 
-### Difference-in-Differences Extension
+## Contact
 
-A companion **reduced-form analysis** exploits the NYC Congestion Pricing surcharge (effective January 9, 2025) as a natural experiment.
+[LinkedIn](https://www.linkedin.com/in/francesco-moschioni/) · [Email](mailto:francesco.moschioni@studbocconi.it) · [CV](https://raw.githubusercontent.com/francesco-moschioni/predoc-applications/main/CV%20Sito/Moschioni_CV_Website.pdf)
 
-- **Treatment**: TLC zones inside Manhattan below 60th Street
-- **Control**: Manhattan above 60th Street (main); outer boroughs (robustness)
-- **Design**: event study with monthly indicators, October 2024 as omitted reference
-- **Outcome**: `ln(trip_count)` at zone × month × mode level
-- **Implementation**: Stata (`reghdfe`, `esttab`, `coefplot`) via Python-built panel (`build_did_panel.py` → DuckDB → `did_panel.csv`)
-
----
-
-### Tech Stack
-
-**Python** — PyArrow, DuckDB, GeoPandas, pandas, NetworkX, PyBLP (planned)
-
-**LaTeX** — TeX Live + VS Code + LaTeX Workshop; Zotero + Better BibTeX
-
-**Data sources** — NYC TLC, MTA Open Data (Socrata), Citi Bike S3, NOAA ISD, U.S. Census Bureau API, GTFS
-
----
-
-## 📫 Contact
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/francesco-moschioni/)
-[![Email](https://img.shields.io/badge/Email-grey?style=flat&logo=gmail)](mailto:framoschioni@gmail.com)
-
----
-
-*All raw data is public. Code available on request — thesis submission pending.*
