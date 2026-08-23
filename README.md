@@ -45,5 +45,4 @@ The public research dossier connects the empirical setting to the model results 
 
 ## Contact
 
-[LinkedIn](https://www.linkedin.com/in/francesco-moschioni/) · [Email](mailto:francesco.moschioni@studbocconi.it) · [CV](https://raw.githubusercontent.com/francesco-moschioni/predoc-applications/main/CV%20Sito/Moschioni_CV_Website.pdf)
-
+[LinkedIn](https://www.linkedin.com/in/francesco-moschioni/) · [Email](mailto:francesco.moschioni@studbocconi.it) · [CV](https://francesco-moschioni.github.io/cv.pdf)
