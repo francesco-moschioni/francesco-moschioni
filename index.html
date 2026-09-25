@@ -81,7 +81,7 @@
       box-shadow: 0 0 0 68px rgba(109,31,52,.025), 0 0 0 136px rgba(109,31,52,.018);
       pointer-events: none;
     }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, .62fr); gap: 96px; align-items: end; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, .62fr); gap: 96px; align-items: center; }
     .eyebrow { font-size: .7rem; color: var(--wine); margin-bottom: 22px; }
     h1 { margin: 0; max-width: 820px; font-size: clamp(3.1rem, 7vw, 6.7rem); line-height: .96; font-weight: 500; letter-spacing: -.045em; }
     h1 em { color: var(--wine); font-weight: 400; }
@@ -181,6 +181,8 @@
     .profile-copy { font-size: 1.12rem; }
     .profile-copy p { margin-top: 0; }
     .portrait { margin: 0 0 32px; border-top: 3px solid var(--wine); background: #faf7f0; max-width: 360px; }
+    .hero-aside .portrait { max-width: none; margin: 0 0 26px; border-top: 0; }
+    .hero-aside .portrait img { aspect-ratio: 5 / 4; object-position: 50% 10%; }
     .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
     .timeline { border-top: 1px solid var(--line); }
     .timeline-item { display: grid; grid-template-columns: 125px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
@@ -257,6 +259,7 @@
         <p class="hero-lead">My research interests lie at the intersection of urban and spatial economics, industrial organization, and labour economics. My current work studies how prices, geography, and access to alternatives shape choices in urban markets.</p>
       </div>
       <aside class="hero-aside" aria-label="Current position and links">
+        <figure class="portrait"><img src="assets/portrait-dolomiti.jpg" width="750" height="1000" alt="Francesco Moschioni"></figure>
         <p><strong>Pre-Doctoral Research Assistant</strong><br>Universitat Pompeu Fabra · ERC project on labour economics and market power · with Prof. Jan Eeckhout</p>
         <p><strong>MSc in Economics and Social Sciences</strong><br>Bocconi University · graduating October 2026</p>
         <div class="button-row">
@@ -385,7 +388,6 @@
         </div>
         <div class="profile-grid">
           <div class="profile-copy reveal">
-            <figure class="portrait"><img src="assets/portrait-washu.jpg" width="750" height="1000" alt="Francesco Moschioni" loading="lazy"></figure>
             <p>I am a Pre-Doctoral Research Assistant at Universitat Pompeu Fabra, working with Prof. Jan Eeckhout on an ERC-funded project on labour economics and market power. I am completing an MSc in Economics and Social Sciences at Bocconi University, with a thesis on congestion pricing in New York City.</p>
             <p>My research interests span urban and spatial economics, industrial organization, and labour economics. I work with structural and applied econometric methods, large administrative datasets, and reproducible computational workflows.</p>
             <a class="button primary" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
