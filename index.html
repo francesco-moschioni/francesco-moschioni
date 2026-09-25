@@ -180,6 +180,8 @@
     .profile-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; }
     .profile-copy { font-size: 1.12rem; }
     .profile-copy p { margin-top: 0; }
+    .portrait { margin: 0 0 32px; border-top: 3px solid var(--wine); background: #faf7f0; max-width: 360px; }
+    .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
     .timeline { border-top: 1px solid var(--line); }
     .timeline-item { display: grid; grid-template-columns: 125px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
     .timeline-item .meta { color: var(--muted); font-size: .58rem; padding-top: 5px; }
@@ -383,6 +385,7 @@
         </div>
         <div class="profile-grid">
           <div class="profile-copy reveal">
+            <figure class="portrait"><img src="assets/portrait-washu.jpg" width="750" height="1000" alt="Francesco Moschioni" loading="lazy"></figure>
             <p>I am a Pre-Doctoral Research Assistant at Universitat Pompeu Fabra, working with Prof. Jan Eeckhout on an ERC-funded project on labour economics and market power. I am completing an MSc in Economics and Social Sciences at Bocconi University, with a thesis on congestion pricing in New York City.</p>
             <p>My research interests span urban and spatial economics, industrial organization, and labour economics. I work with structural and applied econometric methods, large administrative datasets, and reproducible computational workflows.</p>
             <a class="button primary" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
