@@ -1,7 +1,7 @@
 # Francesco Moschioni — Economics × Data × Code
 
 > *Pre-Doctoral Research Assistant at Universitat Pompeu Fabra.*  
-> *Research interests: labour economics, industrial organization, and applied microeconomics.*
+> *Research interests: urban and spatial economics, industrial organization, and labour economics.*
 
 Since September 2026, I work with Prof. Jan Eeckhout on an ERC-funded project on labour economics and market power at Universitat Pompeu Fabra. I am completing an MSc in Economics and Social Sciences at Bocconi University.
 
