@@ -1,9 +1,9 @@
 # Francesco Moschioni — Economics × Data × Code
 
-> *Incoming Pre-Doctoral Research Assistant at Universitat Pompeu Fabra.*  
-> *Research interests: macroeconomics, industrial organization, and urban economics.*
+> *Pre-Doctoral Research Assistant at Universitat Pompeu Fabra.*  
+> *Research interests: labour economics, industrial organization, and applied microeconomics.*
 
-From September 2026, I will join an ERC-funded project on labour economics and market power at Universitat Pompeu Fabra. I am completing an MSc in Economics and Social Sciences at Bocconi University.
+Since September 2026, I work with Prof. Jan Eeckhout on an ERC-funded project on labour economics and market power at Universitat Pompeu Fabra. I am completing an MSc in Economics and Social Sciences at Bocconi University.
 
 ## MSc Thesis — NYC Urban Mobility and Congestion Pricing
 
