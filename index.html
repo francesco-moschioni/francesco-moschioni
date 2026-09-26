@@ -22,7 +22,60 @@
       --serif: "Source Serif 4", Georgia, serif;
       --mono: "DM Mono", monospace;
       --max: 1180px;
+      --card-bg: #faf7f0;
+      --text-on-wine: #fff8ed;
+      --text-card-dark: #4d4641;
+      --text-hero-lead: #3f3935;
+      --text-caveat: #554c43;
+      --nav-bg: rgba(244, 240, 232, 0.94);
+      --card-tint-1: rgba(250, 247, 240, 0.55);
+      --card-tint-2: rgba(250, 247, 240, 0.6);
+      --ring-1: rgba(109, 31, 52, 0.025);
+      --ring-2: rgba(109, 31, 52, 0.018);
+      --caveat-bg: rgba(170, 125, 53, 0.08);
+      --btn-text: #fffaf1;
+      --white: #fff;
+      --gold-text: #86601f;
     }
+
+    [data-theme="dark"] {
+      --paper: #1c1a19;
+      --paper-2: #282422;
+      --ink: #e8e3dc;
+      --muted: #a39c96;
+      --wine: #d67a91;
+      --wine-dark: #b86277;
+      --gold: #d4a961;
+      --line: rgba(214, 122, 145, 0.18);
+      --card-bg: #2a2522;
+      --text-on-wine: #fff8ed;
+      --text-card-dark: #d8d3cc;
+      --text-hero-lead: #c8c2bc;
+      --text-caveat: #e8e3dc;
+      --nav-bg: rgba(28, 26, 25, 0.94);
+      --card-tint-1: rgba(34, 31, 30, 0.55);
+      --card-tint-2: rgba(34, 31, 30, 0.6);
+      --ring-1: rgba(214, 122, 145, 0.05);
+      --ring-2: rgba(214, 122, 145, 0.03);
+      --caveat-bg: rgba(212, 169, 97, 0.08);
+      --btn-text: #1c1a19;
+      --white: #1c1a19;
+      --gold-text: var(--gold);
+    }
+
+    [data-theme="dark"] .contact {
+      background: #332527;
+    }
+    [data-theme="dark"] .contact .button.primary { color: #332527; }
+    [data-theme="dark"] .contact .button:hover { color: #1c1a19; }
+    [data-theme="dark"] footer { background: #141211; color: rgba(255, 248, 237, 0.78); }
+    [data-theme="dark"] .thesis-facts {
+      background: #332527;
+    }
+    [data-theme="dark"] .portrait img {
+      filter: brightness(0.85) contrast(1.05);
+    }
+
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -50,7 +103,7 @@
       top: 0;
       z-index: 20;
       border-bottom: 1px solid var(--line);
-      background: rgba(244, 240, 232, .94);
+      background: var(--nav-bg);
       backdrop-filter: blur(12px);
       font-size: .66rem;
     }
@@ -78,14 +131,14 @@
       top: 2%;
       border: 1px solid var(--line);
       border-radius: 50%;
-      box-shadow: 0 0 0 68px rgba(109,31,52,.025), 0 0 0 136px rgba(109,31,52,.018);
+      box-shadow: 0 0 0 68px var(--ring-1), 0 0 0 136px var(--ring-2);
       pointer-events: none;
     }
     .hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, .62fr); gap: 96px; align-items: center; }
     .eyebrow { font-size: .7rem; color: var(--wine); margin-bottom: 22px; }
     h1 { margin: 0; max-width: 820px; font-size: clamp(3.1rem, 7vw, 6.7rem); line-height: .96; font-weight: 500; letter-spacing: -.045em; }
     h1 em { color: var(--wine); font-weight: 400; }
-    .hero-lead { max-width: 760px; margin: 34px 0 0; font-size: clamp(1.1rem, 2vw, 1.38rem); line-height: 1.48; color: #3f3935; }
+    .hero-lead { max-width: 760px; margin: 34px 0 0; font-size: clamp(1.1rem, 2vw, 1.38rem); line-height: 1.48; color: var(--text-hero-lead); }
     .hero-aside { border-top: 3px solid var(--wine); padding-top: 22px; position: relative; z-index: 1; }
     .hero-aside p { margin: 0 0 22px; color: var(--muted); font-size: .96rem; }
     .hero-aside strong { color: var(--ink); font-weight: 600; }
@@ -102,8 +155,8 @@
       font-size: .64rem;
       transition: .2s ease;
     }
-    .button.primary { background: var(--wine); color: #fffaf1; }
-    .button:hover { background: var(--wine-dark); border-color: var(--wine-dark); color: white; transform: translateY(-1px); }
+    .button.primary { background: var(--wine); color: var(--btn-text); }
+    .button:hover { background: var(--wine-dark); border-color: var(--wine-dark); color: var(--white); transform: translateY(-1px); }
 
     main section { padding: 104px 0; border-bottom: 1px solid var(--line); }
     .section-head { display: grid; grid-template-columns: 210px 1fr; gap: 40px; margin-bottom: 58px; }
@@ -116,15 +169,15 @@
       display: grid;
       grid-template-columns: 1.25fr .75fr;
       border-top: 4px solid var(--wine);
-      background: #faf7f0;
+      background: var(--card-bg);
       box-shadow: 0 18px 50px rgba(72,16,31,.07);
     }
     .thesis-copy { padding: clamp(32px, 5vw, 68px); }
     .thesis-title { margin: 0 0 24px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; font-weight: 500; letter-spacing: -.03em; }
-    .thesis-copy p { max-width: 700px; color: #4d4641; }
+    .thesis-copy p { max-width: 700px; color: var(--text-card-dark); }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 34px; }
     .tag { background: var(--paper-2); color: var(--wine); padding: 7px 10px; font-size: .58rem; }
-    .thesis-facts { background: var(--wine); color: #fff8ed; padding: clamp(30px, 4vw, 52px); display: flex; flex-direction: column; justify-content: space-between; }
+    .thesis-facts { background: var(--wine); color: var(--text-on-wine); padding: clamp(30px, 4vw, 52px); display: flex; flex-direction: column; justify-content: space-between; }
     .fact { padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
     .fact:first-child { padding-top: 0; }
     .fact:last-child { border: 0; padding-bottom: 0; }
@@ -137,10 +190,10 @@
     .metric { margin: auto 0 12px; color: var(--wine); font-size: clamp(3rem, 5vw, 4.6rem); line-height: .92; letter-spacing: -.05em; }
     .metric small { font-size: .35em; letter-spacing: 0; }
     .finding p { margin: 0; color: var(--muted); font-size: .94rem; }
-    .caveat { margin-top: 28px; padding: 22px 26px; border-left: 3px solid var(--gold); background: rgba(170,125,53,.08); color: #554c43; }
+    .caveat { margin-top: 28px; padding: 22px 26px; border-left: 3px solid var(--gold); background: var(--caveat-bg); color: var(--text-caveat); }
 
     .evidence-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 54px; align-items: start; }
-    .figure { border: 1px solid var(--line); background: #faf7f0; padding: 30px; }
+    .figure { border: 1px solid var(--line); background: var(--card-bg); padding: 30px; }
     .figure-kicker { color: var(--wine); font-size: .58rem; margin-bottom: 28px; }
     .bar-row { display: grid; grid-template-columns: 92px 1fr 46px; gap: 12px; align-items: center; margin: 13px 0; }
     .bar-label, .bar-value { font-family: var(--mono); font-size: .62rem; }
@@ -153,34 +206,34 @@
     .quote { margin: 32px 0; padding: 0 0 0 24px; border-left: 3px solid var(--gold); font-size: 1.28rem; line-height: 1.45; }
 
     .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: method; }
-    .method-card { counter-increment: method; min-height: 240px; padding: 28px; border-top: 2px solid var(--wine); background: #faf7f0; }
-    .method-card::before { content: "0" counter(method); display: block; margin-bottom: 42px; color: var(--gold); font-family: var(--mono); font-size: .65rem; }
+    .method-card { counter-increment: method; min-height: 240px; padding: 28px; border-top: 2px solid var(--wine); background: var(--card-bg); }
+    .method-card::before { content: "0" counter(method); display: block; margin-bottom: 42px; color: var(--gold-text); font-family: var(--mono); font-size: .65rem; }
     .method-card h3 { font-size: 1.15rem; }
     .method-card p { margin-bottom: 0; color: var(--muted); font-size: .87rem; }
 
-    .map-frame { overflow: hidden; border: 1px solid var(--line); background: #fff; }
+    .map-frame { overflow: hidden; border: 1px solid var(--line); background: var(--white); }
     .map-frame iframe { display: block; width: 100%; height: min(72vh, 720px); border: 0; }
-    .map-caption { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; border-top: 1px solid var(--line); background: #faf7f0; color: var(--muted); font-size: .82rem; }
+    .map-caption { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; border-top: 1px solid var(--line); background: var(--card-bg); color: var(--muted); font-size: .82rem; }
 
 
     .exhibit-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-    .exhibit-card { min-height: 310px; padding: 34px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(250,247,240,.6); display: flex; flex-direction: column; }
-    .exhibit-card .meta { color: var(--gold); font-size: .58rem; }
-    .exhibit-card.model-evidence { border-top: 3px solid var(--wine); background: #faf7f0; }
+    .exhibit-card { min-height: 310px; padding: 34px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--card-tint-2); display: flex; flex-direction: column; }
+    .exhibit-card .meta { color: var(--gold-text); font-size: .58rem; }
+    .exhibit-card.model-evidence { border-top: 3px solid var(--wine); background: var(--card-bg); }
     .exhibit-card h3 { margin: auto 0 12px; font-size: 1.75rem; }
     .exhibit-card p { margin: 0; color: var(--muted); font-size: .92rem; }
     .exhibit-card a { margin-top: 20px; }
 
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .work-card { padding: 30px; border: 1px solid var(--line); background: rgba(250,247,240,.55); }
-    .work-card .meta { color: var(--gold); font-size: .58rem; margin-bottom: 36px; }
+    .work-card { padding: 30px; border: 1px solid var(--line); background: var(--card-tint-1); }
+    .work-card .meta { color: var(--gold-text); font-size: .58rem; margin-bottom: 36px; }
     .work-card p { color: var(--muted); font-size: .9rem; }
     .text-link { color: var(--wine); text-decoration-thickness: 1px; text-underline-offset: 4px; }
 
     .profile-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; }
     .profile-copy { font-size: 1.12rem; }
     .profile-copy p { margin-top: 0; }
-    .portrait { margin: 0 0 32px; border-top: 3px solid var(--wine); background: #faf7f0; max-width: 360px; }
+    .portrait { margin: 0 0 32px; border-top: 3px solid var(--wine); background: var(--card-bg); max-width: 360px; }
     .hero-aside .portrait { max-width: none; margin: 0 0 26px; border-top: 0; }
     .hero-aside .portrait img { aspect-ratio: 5 / 4; object-position: 50% 10%; }
     .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
@@ -190,13 +243,13 @@
     .timeline-item h3 { font-size: 1.04rem; }
     .timeline-item p { margin: 5px 0 0; color: var(--muted); font-size: .87rem; }
 
-    .contact { background: var(--wine); color: #fff8ed; }
+    .contact { background: var(--wine); color: var(--text-on-wine); }
     .contact .section-head { margin-bottom: 40px; }
     .contact .label { color: #d9b371; }
     .contact h2 { max-width: 900px; }
     .contact p { max-width: 720px; color: rgba(255,248,237,.72); font-size: 1.1rem; }
-    .contact .button { border-color: rgba(255,255,255,.55); color: white; }
-    .contact .button.primary { background: #fff8ed; color: var(--wine); border-color: #fff8ed; }
+    .contact .button { border-color: rgba(255,255,255,.55); color: var(--text-on-wine); }
+    .contact .button.primary { background: var(--text-on-wine); color: var(--wine); border-color: var(--text-on-wine); }
     .contact .button:hover { background: var(--gold); border-color: var(--gold); color: var(--wine-dark); }
 
     footer { padding: 28px 0; background: var(--wine-dark); color: rgba(255,248,237,.7); font-family: var(--mono); font-size: .6rem; }
@@ -223,6 +276,9 @@
     }
 
     @media (max-width: 620px) {
+      .nav-links { gap: 10px; flex-wrap: nowrap; }
+      .brand { font-size: .6rem; }
+      #theme-toggle { min-width: 34px !important; }
       body { font-size: 17px; }
       .shell { width: min(calc(100% - 28px), var(--max)); }
       .nav-inner { min-height: 58px; }
@@ -237,6 +293,15 @@
       .bar-row { grid-template-columns: 76px 1fr 42px; gap: 8px; }
     }
   </style>
+
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1c1a19');
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <nav aria-label="Primary navigation">
@@ -247,6 +312,8 @@
         <li><a href="#other-work">Work</a></li>
         <li><a href="#profile">Profile</a></li>
         <li><a href="#contact">Contact</a></li>
+
+        <li><button id="theme-toggle" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;min-width:44px;min-height:44px;text-transform:uppercase;letter-spacing:.09em;font-family:var(--mono);padding:0;">NIGHT</button></li>
       </ul>
     </div>
   </nav>
@@ -440,6 +507,35 @@
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach((element) => reveal.observe(element));
+  </script>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+    function updateToggleState() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? 'DAY' : 'NIGHT';
+    }
+
+    // Initial state based on the head script
+    updateToggleState();
+
+    const initialThemeColor = '#6d1f34'; // light theme colour (the head script may already have switched the meta to dark)
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        metaThemeColor.setAttribute('content', initialThemeColor); // restore initial light mode color
+        try { localStorage.setItem('theme', 'light'); } catch (e) {}
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        metaThemeColor.setAttribute('content', '#1c1a19'); // dark background
+        try { localStorage.setItem('theme', 'dark'); } catch (e) {}
+      }
+      updateToggleState();
+    });
   </script>
 </body>
 </html>
