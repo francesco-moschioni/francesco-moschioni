@@ -64,6 +64,9 @@
     [data-theme="dark"] .contact {
       background: #332527;
     }
+    [data-theme="dark"] .contact .button.primary { color: #332527; }
+    [data-theme="dark"] .contact .button:hover { color: #1c1a19; }
+    [data-theme="dark"] footer { background: #141211; color: rgba(255, 248, 237, 0.78); }
     [data-theme="dark"] .thesis-facts {
       background: #332527;
     }
@@ -243,7 +246,7 @@
     .contact .label { color: #d9b371; }
     .contact h2 { max-width: 900px; }
     .contact p { max-width: 720px; color: rgba(255,248,237,.72); font-size: 1.1rem; }
-    .contact .button { border-color: rgba(255,255,255,.55); color: var(--white); }
+    .contact .button { border-color: rgba(255,255,255,.55); color: var(--text-on-wine); }
     .contact .button.primary { background: var(--text-on-wine); color: var(--wine); border-color: var(--text-on-wine); }
     .contact .button:hover { background: var(--gold); border-color: var(--gold); color: var(--wine-dark); }
 
@@ -306,7 +309,7 @@
         <li><a href="#profile">Profile</a></li>
         <li><a href="#contact">Contact</a></li>
 
-        <li><button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;min-width:44px;min-height:44px;text-transform:uppercase;letter-spacing:.09em;font-family:var(--mono);padding:0;">NIGHT</button></li>
+        <li><button id="theme-toggle" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;min-width:44px;min-height:44px;text-transform:uppercase;letter-spacing:.09em;font-family:var(--mono);padding:0;">NIGHT</button></li>
       </ul>
     </div>
   </nav>
@@ -508,14 +511,13 @@
 
     function updateToggleState() {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      themeToggle.setAttribute('aria-pressed', isDark);
       themeToggle.textContent = isDark ? 'DAY' : 'NIGHT';
     }
 
     // Initial state based on the head script
     updateToggleState();
 
-    const initialThemeColor = metaThemeColor.getAttribute('content'); // Store initial light theme color
+    const initialThemeColor = '#6d1f34'; // light theme colour (the head script may already have switched the meta to dark)
 
     themeToggle.addEventListener('click', () => {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
