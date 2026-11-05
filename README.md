@@ -3,7 +3,7 @@
 > *Pre-Doctoral Research Assistant at Universitat Pompeu Fabra.*  
 > *Research interests: urban and spatial economics, industrial organization, and labour economics.*
 
-Since September 2026, I work with Prof. Jan Eeckhout on an ERC-funded project on labour economics and market power at Universitat Pompeu Fabra. I am completing an MSc in Economics and Social Sciences at Bocconi University.
+I work with Prof. Jan Eeckhout on an ERC-funded project on labour economics and market power at Universitat Pompeu Fabra. I hold an MSc in Economics and Social Sciences from Bocconi University.
 
 ## MSc Thesis — NYC Urban Mobility and Congestion Pricing
 
@@ -45,4 +45,4 @@ The public research dossier connects the empirical setting to the model results 
 
 ## Contact
 
-[LinkedIn](https://www.linkedin.com/in/francesco-moschioni/) · [Email](mailto:francesco.moschioni@studbocconi.it) · [CV](https://francesco-moschioni.github.io/cv.pdf)
+[LinkedIn](https://www.linkedin.com/in/francesco-moschioni/) · [Email](mailto:francesco.moschioni@upf.edu) · [CV](https://francesco-moschioni.github.io/francesco-moschioni/cv.pdf)
